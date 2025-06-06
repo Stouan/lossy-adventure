@@ -125,7 +125,7 @@
         </div>
         
         <div class="output">
-I ENJOY BEVERAGES AT MOST TEMPERATURES. REALLY LOVE MY PET(S) AND/OR CHILD!
+Type the word 'awkward' to begin!
         </div>
         
         <div id="terminal-output"></div>
@@ -179,7 +179,7 @@ I ENJOY BEVERAGES AT MOST TEMPERATURES. REALLY LOVE MY PET(S) AND/OR CHILD!
             
             handleLobbyCommands(command) {
                 switch(command) {
-                    case 'adventure':
+                    case 'awkward':
                         this.startAdventure();
                         break;
                     case 'help':
@@ -195,15 +195,15 @@ I ENJOY BEVERAGES AT MOST TEMPERATURES. REALLY LOVE MY PET(S) AND/OR CHILD!
                         this.showPets();
                         break;
                     default:
-                        this.appendOutput(`<span class="error">Command not recognized: ${command}</span>\nTry 'help' for available commands.`);
+                        this.appendOutput(`<span class="error">Command not recognized: ${command}</span>\nTry 'help' for available commands or type 'awkward' to begin!`);
                 }
             }
             
             startAdventure() {
                 this.gameState = 'adventure';
-                this.appendOutput(`<span class="cyan">ADVENTURE MODE INITIATED...</span>
+                this.appendOutput(`<span class="cyan">A.W.K.W.A.R.D. MODE INITIATED...</span>
 Loading Lu's bedroom/corporate headquarters...
-Calculating chaos levels... 47%
+Calculating awkwardness levels... 47%
 Deploying imaginary friends... 73%
 Adventure ready!
 
@@ -675,7 +675,7 @@ Maybe give him some more attention first?`);
             
             showHelp() {
                 this.appendOutput(`<span class="cyan">AVAILABLE COMMANDS:</span>
-• adventure - Begin Lu's bedroom adventure
+• awkward - Begin Lu's bedroom adventure
 • about_lu - Meet your CEO
 • beverages - Temperature preferences explained  
 • pets - Current animal employees
