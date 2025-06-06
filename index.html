@@ -1,755 +1,741 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.2">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lossy Terminal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            overflow-x: auto;
+        }
+        
+        .terminal {
+            max-width: 800px;
+            margin: 0 auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .ascii-logo {
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        
+        .status-line {
+            color: #ffff00;
+            margin-bottom: 20px;
+        }
+        
+        .prompt {
+            color: #00ff00;
+        }
+        
+        .command {
+            color: #ffffff;
+        }
+        
+        .output {
+            color: #00ff00;
+            margin: 10px 0;
+        }
+        
+        .error {
+            color: #ff6b6b;
+        }
+        
+        .cyan {
+            color: #00ffff;
+        }
+        
+        .yellow {
+            color: #ffff00;
+        }
+        
+        .magenta {
+            color: #ff00ff;
+        }
+        
+        input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            outline: none;
+            width: 200px;
+        }
+        
+        .cursor {
+            background-color: #00ff00;
+            color: #000;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .choices {
+            color: #ffff00;
+            margin: 10px 0;
+        }
+        
+        .choice-button {
+            background: none;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 2px 6px;
+            margin: 2px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .choice-button:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
-<p class="p1">morePets() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.stressLevel = Math.max(0, this.stressLevel - 15);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.lossyMood = 'blissful';</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;🐕 PREMIUM PETTING PROTOCOL ACTIVATED 🐕&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You decide that one round of pets was insufficient. Lossy agrees<span class="Apple-converted-space"> </span></p>
-<p class="p1">with this assessment and flops over to expose his belly.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Lossy's Professional Opinion:&lt;/span&gt; "This is the BEST business strategy<span class="Apple-converted-space"> </span></p>
-<p class="p1">ever implemented. Why solve complex problems when you could just<span class="Apple-converted-space"> </span></p>
-<p class="p1">give more belly rubs? I recommend making this our primary corporate<span class="Apple-converted-space"> </span></p>
-<p class="p1">methodology."</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;ADVANCED PET METRICS:&lt;/span&gt;</p>
-<p class="p1">• Tail wag frequency: 73 wags per minute (CRITICAL MASS)</p>
-<p class="p1">• Stress reduction: Additional 15% (total: ${this.stressLevel}%)</p>
-<p class="p1">• Lossy mood upgrade: ${this.lossyMood}</p>
-<p class="p1">• Corporate productivity: Unmeasurable (too relaxed to care)</p>
-<p class="p2"><br></p>
-<p class="p1">The squirrel outside starts slow-clapping in approval.`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['read', 'investigate', 'snack', 'microwave', 'secret_handshake']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>waveAtSquirrel() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.squirrelTrust += 25;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;🐿️ DIPLOMATIC GESTURE INITIATED 🐿️&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You wave enthusiastically at the squirrel. It pauses its acorn<span class="Apple-converted-space"> </span></p>
-<p class="p1">arrangements and waves back with a tiny paw!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Squirrel Communication Log:&lt;/span&gt;</p>
-<p class="p1">The squirrel holds up a series of acorns spelling out: "H-E-L-L-O"</p>
-<p class="p1">Then it does what appears to be a little bow.</p>
-<p class="p1">Finally, it points at itself and holds up a sign: "CHATTY"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;BREAKTHROUGH:&lt;/span&gt; You've made first contact with Chatty Squirrel,<span class="Apple-converted-space"> </span></p>
-<p class="p1">Lu's secret Acorn Analytics Consultant!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Squirrel Trust Level: ${this.squirrelTrust}%&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">Chatty chitters something that sounds suspiciously like "Want to<span class="Apple-converted-space"> </span></p>
-<p class="p1">see my quarterly acorn reports?"`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'snack', 'microwave', 'dance', 'business_plan']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>shareSnack() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (this.inventory.includes('granola bar')) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.inventory = this.inventory.filter(item =&gt; item !== 'granola bar');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.lossyMood = 'ecstatic';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.squirrelTrust += 20;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.appendOutput(`&lt;span class="cyan"&gt;🍪 SNACK SHARING PROTOCOL ENGAGED 🍪&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You break the granola bar into strategic portions:</p>
-<p class="p1">• 60% for Lossy (he's a big dog)</p>
-<p class="p1">• 30% for yourself (executive privileges) <span class="Apple-converted-space"> </span></p>
-<p class="p1">• 10% for Chatty Squirrel (international relations)</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Lossy's Response:&lt;/span&gt; "OH WOW OH WOW OH WOW! This is the best<span class="Apple-converted-space"> </span></p>
-<p class="p1">day of my entire Quality Control career! I'm promoting you to<span class="Apple-converted-space"> </span></p>
-<p class="p1">Chief Snack Distribution Officer!"</p>
-<p class="p2"><br></p>
-<p class="p1">You toss a piece out the window. Chatty catches it expertly and<span class="Apple-converted-space"> </span></p>
-<p class="p1">does a little victory dance.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;DIPLOMATIC SUCCESS:&lt;/span&gt;</p>
-<p class="p1">• Lossy mood: ${this.lossyMood}</p>
-<p class="p1">• Squirrel Trust: ${this.squirrelTrust}%</p>
-<p class="p1">• Office morale: MAXIMUM</p>
-<p class="p1">• Granola bar: Consumed for the greater good`);</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.showChoices(['pet', 'read', 'investigate', 'microwave', 'call_meeting']);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.appendOutput(`&lt;span class="error"&gt;No snacks available to share!&lt;/span&gt;</p>
-<p class="p1">You need to get a snack first before you can share it.`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>thankMicrowave() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;📻 GRATITUDE PROTOCOL ACTIVATED 📻&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;You say:&lt;/span&gt; "Thank you for the wisdom, Microwave Mike!"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;MICROWAVE MIKE responds:&lt;/span&gt;</p>
-<p class="p1">"BEEP BEEP! *emotional pause* Oh my goodness! In all my years<span class="Apple-converted-space"> </span></p>
-<p class="p1">of dispensing life advice and reheating leftovers, no one has<span class="Apple-converted-space"> </span></p>
-<p class="p1">ever thanked me for my wisdom!</p>
-<p class="p2"><br></p>
-<p class="p1">*happy beeping sounds*</p>
-<p class="p2"><br></p>
-<p class="p1">You know what? You're getting my premium advice package:</p>
-<p class="p2"><br></p>
-<p class="p1">BONUS WISDOM: Remember that being different isn't a bug, it's<span class="Apple-converted-space"> </span></p>
-<p class="p1">a feature. Lu talks to kitchen appliances and she's the most<span class="Apple-converted-space"> </span></p>
-<p class="p1">successful 9-year-old CEO I know!</p>
-<p class="p2"><br></p>
-<p class="p1">BEEP BEEP! *chef's kiss with extra sparkles*"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;You feel a warm glow of satisfaction (and not just from<span class="Apple-converted-space"> </span></p>
-<p class="p1">the microwave's heating element).&lt;/span&gt;`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'build_something']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>buildSomething() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;🔧 CONSTRUCTION MODE ACTIVATED 🔧&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">Inspired by Lu's engineering spirit, you decide to build something<span class="Apple-converted-space"> </span></p>
-<p class="p1">amazing using available bedroom/office supplies.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Available Materials:&lt;/span&gt;</p>
-<p class="p1">• 47 colored pens (various glitter levels)</p>
-<p class="p1">• A cardboard box labeled "IMPORTANT BUSINESS SUPPLIES"</p>
-<p class="p1">• Scotch tape (premium grade)</p>
-<p class="p1">• String cheese wrapper (surprisingly structural)</p>
-<p class="p2"><br></p>
-<p class="p1">You construct a "Friendship Detection Device" consisting of:</p>
-<p class="p1">- A cardboard periscope for spotting potential friends</p>
-<p class="p1">- Glittery early warning system for corporate spies</p>
-<p class="p1">- Emergency snack compartment (very important)</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;ENGINEERING SUCCESS:&lt;/span&gt;</p>
-<p class="p1">Lu would be proud of your innovative use of office supplies!</p>
-<p class="p1">Lossy sniffs the device and gives it two paws up.</p>
-<p class="p2"><br></p>
-<p class="p1">The squirrel outside holds up a sign: "EXCELLENT CRAFTSMANSHIP"`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'call_meeting']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>checkStatus() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;📊 CORPORATE STATUS REPORT 📊&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;CURRENT METRICS:&lt;/span&gt;</p>
-<p class="p1">• CEO Stress Level: ${this.stressLevel}%</p>
-<p class="p1">• Quality Control Mood: ${this.lossyMood}</p>
-<p class="p1">• Squirrel Diplomatic Relations: ${this.squirrelTrust}%</p>
-<p class="p1">• Inventory: ${this.inventory.length &gt; 0 ? this.inventory.join(', ') : 'Empty (time for snacks?)'}</p>
-<p class="p1">• Friendship Detection: OPERATIONAL</p>
-<p class="p1">• Microwave Wisdom Level: MAXIMUM</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;AVAILABLE ACTIONS:&lt;/span&gt;</p>
-<p class="p1">pet, read, investigate, snack, microwave, build_something,<span class="Apple-converted-space"> </span></p>
-<p class="p1">call_meeting, dance, business_plan, secret_handshake, exit</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;RECOMMENDATION:&lt;/span&gt;</p>
-<p class="p1">All systems functioning within acceptable weirdness parameters.`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>callMeeting() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;📋 EMERGENCY BOARD MEETING INITIATED 📋&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You call an official meeting of Lu's Global Communication Network.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;ATTENDEES:&lt;/span&gt;</p>
-<p class="p1">• Lossy (Quality Control) - Present and wagging</p>
-<p class="p1">• Microwave Mike (Chief Wisdom Officer) - BEEP BEEP!</p>
-<p class="p1">• Chatty Squirrel (via window conference call) - *chittering*</p>
-<p class="p1">• Various pens (silent partners) - Glittering ominously</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;MEETING AGENDA:&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Item 1:&lt;/span&gt; Lossy reports that belly rub quotas are EXCEEDED</p>
-<p class="p1">&lt;span class="yellow"&gt;Item 2:&lt;/span&gt; Microwave Mike suggests adding more friendship algorithms</p>
-<p class="p1">&lt;span class="yellow"&gt;Item 3:&lt;/span&gt; Chatty proposes joint acorn-granola research initiatives</p>
-<p class="p1">&lt;span class="yellow"&gt;Item 4:&lt;/span&gt; Motion to make snack breaks mandatory every 23 minutes</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="cyan"&gt;RESOLUTION:&lt;/span&gt; All proposals approved unanimously!</p>
-<p class="p1">Meeting adjourned with unanimous tail wagging.`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'dance']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>danceWithSquirrel() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (this.squirrelTrust &gt;= 40) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.squirrelTrust = Math.min(100, this.squirrelTrust + 15);</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.appendOutput(`&lt;span class="cyan"&gt;💃 INTERSPECIES DANCE PARTY ACTIVATED 💃&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You start doing Lu's signature "Discovery Dance" (spinning until<span class="Apple-converted-space"> </span></p>
-<p class="p1">dizzy, then more spinning). Chatty Squirrel immediately joins in!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;DANCE SEQUENCE:&lt;/span&gt;</p>
-<p class="p1">• You: Victory spins with arm flourishes</p>
-<p class="p1">• Chatty: Acrobatic tail twirls and branch bouncing <span class="Apple-converted-space"> </span></p>
-<p class="p1">• Lossy: Enthusiastic spinning in circles</p>
-<p class="p1">• Microwave Mike: Rhythmic beeping accompaniment</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;CULTURAL BREAKTHROUGH:&lt;/span&gt;</p>
-<p class="p1">You've established the first recorded human-squirrel-dog-microwave<span class="Apple-converted-space"> </span></p>
-<p class="p1">dance collaboration in corporate history!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Squirrel Trust: ${this.squirrelTrust}% (MAXIMUM FRIENDSHIP ACHIEVED)&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">Chatty holds up a tiny trophy made of acorns that says "BEST DANCE PARTNER"`);</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'secret_handshake']);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.appendOutput(`&lt;span class="error"&gt;The squirrel seems hesitant to dance with you.&lt;/span&gt;</p>
-<p class="p1">Maybe try building more trust first? (Wave or investigate more)`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>makeBusinessPlan() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;📈 STRATEGIC PLANNING SESSION INITIATED 📈&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">Inspired by Lu's notebook, you decide to create your own business plan:</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;PROJECT: "ULTIMATE FRIENDSHIP OPTIMIZATION"&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Phase 1:&lt;/span&gt; Pet all available dogs (COMPLETED ✓)</p>
-<p class="p1">&lt;span class="yellow"&gt;Phase 2:&lt;/span&gt; Establish squirrel diplomatic relations (IN PROGRESS)</p>
-<p class="p1">&lt;span class="yellow"&gt;Phase 3:&lt;/span&gt; Consult kitchen appliances for wisdom (COMPLETED ✓)</p>
-<p class="p1">&lt;span class="yellow"&gt;Phase 4:&lt;/span&gt; Invent new forms of interpretive dance (COMPLETED ✓)</p>
-<p class="p1">&lt;span class="yellow"&gt;Phase 5:&lt;/span&gt; Share snacks for world peace (OPTIONAL BUT RECOMMENDED)</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;SUCCESS METRICS:&lt;/span&gt;</p>
-<p class="p1">• Tail wags per minute: UNLIMITED</p>
-<p class="p1">• Stress levels: APPROACHING ZERO</p>
-<p class="p1">• Weirdness acceptance: 100%</p>
-<p class="p1">• Fun optimization: MAXIMUM</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="cyan"&gt;Congratulations! You've successfully internalized Lu's corporate philosophy!&lt;/span&gt;`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'call_meeting']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>secretHandshake() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (this.lossyMood === 'blissful' || this.lossyMood === 'ecstatic') {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.appendOutput(`&lt;span class="cyan"&gt;🤝 SECRET HANDSHAKE PROTOCOL ACTIVATED 🤝&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You approach Lossy for the ultra-secret Lu &amp; Lossy corporate handshake:</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;THE SEQUENCE:&lt;/span&gt;</p>
-<p class="p1">1. You hold out your hand</p>
-<p class="p1">2. Lossy places his paw in your palm</p>
-<p class="p1">3. Gentle paw shake (3.7 seconds, optimal duration)</p>
-<p class="p1">4. Lossy does a little spin</p>
-<p class="p1">5. You do a victory pose</p>
-<p class="p1">6. Both parties say "MAXIMUM GOOD BUSINESS!"<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">   </span>(Lossy's version is "WOOF!")</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;HANDSHAKE COMPLETED SUCCESSFULLY!&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You are now an official member of Lu's Global Communication Network!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="cyan"&gt;Certificate of Friendship Achievement unlocked!&lt;/span&gt;</p>
-<p class="p1">Chatty Squirrel applauds from the window.`);</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.showChoices(['read', 'investigate', 'snack', 'microwave', 'call_meeting', 'exit']);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.appendOutput(`&lt;span class="error"&gt;Lossy seems too sleepy for the secret handshake.&lt;/span&gt;</p>
-<p class="p1">Maybe give him some more attention first?`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Lossy Terminal&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'JetBrains Mono', monospace;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.4;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.terminal {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>white-space: pre-wrap;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>word-wrap: break-word;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.ascii-logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00ffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.status-line {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ffff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.prompt {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.command {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.output {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.error {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff6b6b;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cyan {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00ffff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.yellow {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ffff00;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.magenta {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ff00ff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>input {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'JetBrains Mono', monospace;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 200px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cursor {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: blink 1s infinite;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes blink {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>0%, 50% { opacity: 1; }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>51%, 100% { opacity: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.choices {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ffff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.choice-button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2px 6px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'JetBrains Mono', monospace;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.2s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.choice-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #00ff00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="terminal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="ascii-logo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space"> </span>_ <span class="Apple-converted-space">    </span>___<span class="Apple-converted-space">  </span>____ ____ _ <span class="Apple-converted-space">  </span>_<span class="Apple-converted-space"> </span></p>
-<p class="p1">| | <span class="Apple-converted-space">  </span>/ _ \/ ___/ ___| | | |</p>
-<p class="p1">| |<span class="Apple-converted-space">  </span>| | | \___ \___ \ |_| |</p>
-<p class="p1">| |__| |_| |___) |__) \__, |</p>
-<p class="p1">|_____\___/|____/____/<span class="Apple-converted-space">  </span>/_/<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="status-line"&gt;</p>
-<p class="p1">&gt;_ CONNECTION STABLE | LOSSY PROTOCOL ACTIVE | ADVENTURE MODE: READY</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="output"&gt;</p>
-<p class="p1">I ENJOY BEVERAGES AT MOST TEMPERATURES. REALLY LOVE MY PET(S) AND/OR CHILD!</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="terminal-output"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="prompt"&gt;</p>
-<p class="p1">&gt;_ &lt;input type="text" id="command-input" placeholder="" autocomplete="off"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>class LossyAdventure {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>constructor() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.gameState = 'lobby';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.inventory = [];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.stressLevel = 50;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.lossyMood = 'sleepy';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.squirrelTrust = 0;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.commandHistory = [];</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.input = document.getElementById('command-input');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.output = document.getElementById('terminal-output');</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.input.addEventListener('keypress', (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (e.key === 'Enter') {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.processCommand(this.input.value.toLowerCase().trim());</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.input.value = '';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.input.focus();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>appendOutput(text, className = 'output') {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const div = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>div.className = className;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>div.innerHTML = text;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.output.appendChild(div);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.output.scrollTop = this.output.scrollHeight;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>processCommand(command) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&gt;_ &lt;span class="command"&gt;${command}&lt;/span&gt;`, 'prompt');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.commandHistory.push(command);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (this.gameState === 'lobby') {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.handleLobbyCommands(command);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else if (this.gameState === 'adventure') {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.handleAdventureCommands(command);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>handleLobbyCommands(command) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>switch(command) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'adventure':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.startAdventure();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'help':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.showHelp();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'about_lu':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.showAboutLu();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'beverages':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.showBeverages();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'pets':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.showPets();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>default:</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.appendOutput(`&lt;span class="error"&gt;Command not recognized: ${command}&lt;/span&gt;\nTry 'help' for available commands.`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>startAdventure() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.gameState = 'adventure';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;ADVENTURE MODE INITIATED...&lt;/span&gt;</p>
-<p class="p1">Loading Lu's bedroom/corporate headquarters...</p>
-<p class="p1">Calculating chaos levels... 47%</p>
-<p class="p1">Deploying imaginary friends... 73%</p>
-<p class="p1">Adventure ready!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;═══════════════════════════════════════&lt;/span&gt;</p>
-<p class="p1">&lt;span class="magenta"&gt;LU'S BEDROOM/CORPORATE HEADQUARTERS&lt;/span&gt;</p>
-<p class="p1">&lt;span class="yellow"&gt;═══════════════════════════════════════&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You are in Lu's bedroom, which doubles as the secret headquarters<span class="Apple-converted-space"> </span></p>
-<p class="p1">of her Global Communication Network &amp; Friendship Database Corporation.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="cyan"&gt;You see:&lt;/span&gt;</p>
-<p class="p1">• A notebook labeled "TOP SECRET BUSINESS PLANS" (glittery gel pen required)</p>
-<p class="p1">• A golden retriever named Lossy (currently ${this.lossyMood})</p>
-<p class="p1">• A suspicious squirrel outside the window (plotting something)</p>
-<p class="p1">• A microwave in the corner (offering life advice)</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Current Status:&lt;/span&gt;</p>
-<p class="p1">Stress Level: ${this.stressLevel}%</p>
-<p class="p1">Lossy Mood: ${this.lossyMood}</p>
-<p class="p1">Squirrel Trust: ${this.squirrelTrust}%`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['read', 'pet', 'investigate', 'snack', 'microwave']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>handleAdventureCommands(command) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>switch(command) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'read':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.readNotebook();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'pet':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.petLossy();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'investigate':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.investigateSquirrel();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'snack':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.getSnack();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'microwave':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.consultMicrowave();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'more_pets':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.morePets();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'wave_at_squirrel':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.waveAtSquirrel();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'share_snack':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.shareSnack();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'thank_microwave':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.thankMicrowave();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'build_something':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.buildSomething();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'check_status':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.checkStatus();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'call_meeting':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.callMeeting();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'dance':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.danceWithSquirrel();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'business_plan':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.makeBusinessPlan();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'secret_handshake':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.secretHandshake();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'exit':</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>case 'quit':</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.exitAdventure();</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>break;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>default:</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>this.appendOutput(`&lt;span class="error"&gt;Invalid action: ${command}&lt;/span&gt;\nTry typing 'check_status' to see available actions.`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>petLossy() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.stressLevel = Math.max(0, this.stressLevel - 25);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.lossyMood = 'happy';</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;🐕 PET LOSSY ACTIVATED 🐕&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You approach Lossy and give him the finest quality pets. His tail<span class="Apple-converted-space"> </span></p>
-<p class="p1">begins wagging at approximately 47 wags per minute (optimal rate).</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Lossy says:&lt;/span&gt; "WOOF! *tail wagging intensifies* You know what would<span class="Apple-converted-space"> </span></p>
-<p class="p1">really solve all your problems? A nice nap. Maybe some treats.<span class="Apple-converted-space"> </span></p>
-<p class="p1">Definitely more belly rubs."</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;EFFECT:&lt;/span&gt;</p>
-<p class="p1">• Your stress levels decrease by 25% (now ${this.stressLevel}%)</p>
-<p class="p1">• Lossy's mood improved to: ${this.lossyMood}</p>
-<p class="p1">• Quality Control rating: MAXIMUM GOOD BOY</p>
-<p class="p1">• Recommended course of action: More pets, obviously</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="cyan"&gt;Lossy stretches and yawns, demonstrating perfect nap technique.&lt;/span&gt;`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['read', 'investigate', 'snack', 'microwave', 'more_pets', 'check_status']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>readNotebook() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;📔 ACCESSING TOP SECRET BUSINESS PLANS 📔&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You carefully open Lu's glittery notebook. The pages are filled with:</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;PAGE 1: "PROJECT A.W.K.W.A.R.D."&lt;/span&gt;</p>
-<p class="p1">"Make everyone brave enough to share cool thoughts!!!"</p>
-<p class="p1">*Diagram of friendship algorithm with lots of hearts*</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;PAGE 2: "EVIL COMPANY DEFENSE STRATEGIES"&lt;/span&gt;</p>
-<p class="p1">"1. Build sparkly defense shields</p>
-<p class="p1"><span class="Apple-converted-space"> </span>2. Train squirrel as spy</p>
-<p class="p1"><span class="Apple-converted-space"> </span>3. Ask Lossy for advice (he's very wise)"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;PAGE 3: "BEVERAGE TEMPERATURE RESEARCH"&lt;/span&gt;</p>
-<p class="p1">"Hot chocolate: GOOD</p>
-<p class="p1"><span class="Apple-converted-space"> </span>Iced coffee: ALSO GOOD</p>
-<p class="p1"><span class="Apple-converted-space"> </span>Room temperature juice: ACCEPTABLE</p>
-<p class="p1"><span class="Apple-converted-space"> </span>Conclusion: Most temperatures are fine"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;You gain insight into Lu's corporate methodology.&lt;/span&gt;`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'investigate', 'snack', 'microwave', 'business_plan']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>investigateSquirrel() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.squirrelTrust += 15;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;🐿️ SQUIRREL INVESTIGATION PROTOCOL 🐿️&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You peer out the window at the suspicious squirrel. It notices<span class="Apple-converted-space"> </span></p>
-<p class="p1">your surveillance and begins what appears to be... interpretive dance?</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Squirrel Activity Log:&lt;/span&gt;</p>
-<p class="p1">• Arranging acorns in geometric patterns</p>
-<p class="p1">• Occasional chittering (possibly morse code?)</p>
-<p class="p1">• Making direct eye contact (VERY suspicious)</p>
-<p class="p1">• Tail twitching at irregular intervals</p>
-<p class="p2"><br></p>
-<p class="p1">The squirrel holds up a tiny sign that reads: "JUST TRYING TO HELP"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Squirrel Trust Level increased to: ${this.squirrelTrust}%&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You're beginning to suspect this squirrel might actually be part<span class="Apple-converted-space"> </span></p>
-<p class="p1">of Lu's imaginary corporate team...`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'snack', 'microwave', 'wave_at_squirrel', 'dance']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>getSnack() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.inventory.push('granola bar');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.stressLevel = Math.max(0, this.stressLevel - 10);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;🍪 SNACK ACQUISITION SUCCESSFUL 🍪&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You discover Lu's emergency stash of granola bars hidden behind<span class="Apple-converted-space"> </span></p>
-<p class="p1">her "Business Leadership for 9-Year-Olds" book.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Snack Analysis:&lt;/span&gt;</p>
-<p class="p1">• Flavor: Chocolate chip (premium grade)</p>
-<p class="p1">• Crumb factor: Moderate</p>
-<p class="p1">• Energy boost: +15 creativity points</p>
-<p class="p1">• Lossy interest level: MAXIMUM</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Inventory updated:&lt;/span&gt; +1 Granola Bar</p>
-<p class="p1">&lt;span class="yellow"&gt;Stress level reduced to:&lt;/span&gt; ${this.stressLevel}%</p>
-<p class="p2"><br></p>
-<p class="p1">Lossy has detected the snack and is now giving you very hopeful eyes.`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'microwave', 'share_snack', 'build_something']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>consultMicrowave() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;📻 MICROWAVE CONSULTATION ACTIVATED 📻&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">You approach the microwave, which Lu has designated as "Chief<span class="Apple-converted-space"> </span></p>
-<p class="p1">Wisdom Officer" of her corporation.</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;MICROWAVE MIKE says:&lt;/span&gt;</p>
-<p class="p1">"BEEP BEEP! *dramatic pause* Attention, human! I have observed<span class="Apple-converted-space"> </span></p>
-<p class="p1">your stress patterns and recommend the following:</p>
-<p class="p2"><br></p>
-<p class="p1">1. Remember that most problems can be solved with friendship</p>
-<p class="p1">2. When in doubt, add more sparkles to your defense systems</p>
-<p class="p1">3. A warm beverage often provides clarity (I can help with that)</p>
-<p class="p1">4. That squirrel outside? Totally trustworthy. Great at acorn analytics.</p>
-<p class="p2"><br></p>
-<p class="p1">BEEP BEEP! *chef's kiss* Wisdom dispensed!"</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;You feel 23% wiser and significantly more confident about<span class="Apple-converted-space"> </span></p>
-<p class="p1">your ability to solve world problems.&lt;/span&gt;`);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.showChoices(['pet', 'read', 'investigate', 'snack', 'thank_microwave', 'call_meeting']);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>showChoices(choices) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let choiceText = '\n&lt;span class="choices"&gt;What do you do?&lt;/span&gt;\n';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>choices.forEach(choice =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>choiceText += `&lt;button class="choice-button" onclick="game.processCommand('${choice}')"&gt;[${choice}]&lt;/button&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(choiceText);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>showHelp() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;AVAILABLE COMMANDS:&lt;/span&gt;</p>
-<p class="p1">• adventure - Begin Lu's bedroom adventure</p>
-<p class="p1">• about_lu - Meet your CEO</p>
-<p class="p1">• beverages - Temperature preferences explained <span class="Apple-converted-space"> </span></p>
-<p class="p1">• pets - Current animal employees</p>
-<p class="p1">• help - Show this menu`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>showAboutLu() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;CEO BIOGRAPHY LOADING...&lt;/span&gt;</p>
-<p class="p1">Calculating amazingness levels... 47%</p>
-<p class="p1">Translating from 9-year-old to corporate speak... 73%</p>
-<p class="p1">Adding required sparkles... 89%</p>
-<p class="p1">Biography ready!</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;CEO:&lt;/span&gt; Luna Kaitlin Murs, Age 9</p>
-<p class="p1">&lt;span class="magenta"&gt;Qualifications:&lt;/span&gt; Talks to kitchen appliances, invents new math</p>
-<p class="p1">&lt;span class="magenta"&gt;Current projects:&lt;/span&gt; Solving all human problems via friendship algorithms</p>
-<p class="p1">&lt;span class="magenta"&gt;Management style:&lt;/span&gt; Enthusiastic chaos with strategic snack breaks</p>
-<p class="p1">&lt;span class="magenta"&gt;Company motto:&lt;/span&gt; "Being weird is actually totally fine"`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>showBeverages() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;BEVERAGE TEMPERATURE RESEARCH DIVISION REPORT:&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Hot beverages:&lt;/span&gt; Excellent for thinking deep thoughts</p>
-<p class="p1">&lt;span class="magenta"&gt;Cold beverages:&lt;/span&gt; Perfect for celebrating breakthroughs <span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;span class="magenta"&gt;Room temperature:&lt;/span&gt; Acceptable during crisis management</p>
-<p class="p1">&lt;span class="magenta"&gt;Frozen beverages:&lt;/span&gt; Reserved for maximum celebration events</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;Conclusion:&lt;/span&gt; Most temperatures are scientifically awesome.</p>
-<p class="p1">&lt;span class="yellow"&gt;Current recommendation:&lt;/span&gt; Whatever temperature makes you happy.`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>showPets() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;CURRENT ANIMAL EMPLOYEES:&lt;/span&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Lossy&lt;/span&gt; - Quality Control Department</p>
-<p class="p1">• Status: Professional napper and treat evaluator</p>
-<p class="p1">• Qualifications: Very good boy, excellent listener</p>
-<p class="p1">• Current mood: ${this.lossyMood}</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="magenta"&gt;Neighborhood Squirrel&lt;/span&gt; - Acorn Analytics Consultant <span class="Apple-converted-space"> </span></p>
-<p class="p1">• Status: Suspicious but helpful</p>
-<p class="p1">• Trust level: ${this.squirrelTrust}%</p>
-<p class="p1">• Specialty: Interpretive dance communications</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;span class="yellow"&gt;All employees are receiving adequate treats and belly rubs.&lt;/span&gt;`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>exitAdventure() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.gameState = 'lobby';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.appendOutput(`&lt;span class="cyan"&gt;ADVENTURE MODE DEACTIVATED&lt;/span&gt;</p>
-<p class="p1">Returning to main terminal...</p>
-<p class="p1">Adventure progress saved to Lu's secret files.</p>
-<p class="p2"><br></p>
-<p class="p1">Thanks for visiting Lu's corporate headquarters!`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Initialize the game</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const game = new LossyAdventure();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <div class="terminal">
+        <div class="ascii-logo">
+ _     ___  ____ ____ _   _ 
+| |   / _ \/ ___/ ___| | | |
+| |  | | | \___ \___ \ |_| |
+| |__| |_| |___) |__) \__, |
+|_____\___/|____/____/  /_/ 
+        </div>
+        
+        <div class="status-line">
+>_ CONNECTION STABLE | LOSSY PROTOCOL ACTIVE | ADVENTURE MODE: READY
+        </div>
+        
+        <div class="output">
+I ENJOY BEVERAGES AT MOST TEMPERATURES. REALLY LOVE MY PET(S) AND/OR CHILD!
+        </div>
+        
+        <div id="terminal-output"></div>
+        
+        <div class="prompt">
+>_ <input type="text" id="command-input" placeholder="" autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+        class LossyAdventure {
+            constructor() {
+                this.gameState = 'lobby';
+                this.inventory = [];
+                this.stressLevel = 50;
+                this.lossyMood = 'sleepy';
+                this.squirrelTrust = 0;
+                this.commandHistory = [];
+                
+                this.input = document.getElementById('command-input');
+                this.output = document.getElementById('terminal-output');
+                
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.processCommand(this.input.value.toLowerCase().trim());
+                        this.input.value = '';
+                    }
+                });
+                
+                this.input.focus();
+            }
+            
+            appendOutput(text, className = 'output') {
+                const div = document.createElement('div');
+                div.className = className;
+                div.innerHTML = text;
+                this.output.appendChild(div);
+                this.output.scrollTop = this.output.scrollHeight;
+            }
+            
+            processCommand(command) {
+                this.appendOutput(`>_ <span class="command">${command}</span>`, 'prompt');
+                this.commandHistory.push(command);
+                
+                if (this.gameState === 'lobby') {
+                    this.handleLobbyCommands(command);
+                } else if (this.gameState === 'adventure') {
+                    this.handleAdventureCommands(command);
+                }
+            }
+            
+            handleLobbyCommands(command) {
+                switch(command) {
+                    case 'adventure':
+                        this.startAdventure();
+                        break;
+                    case 'help':
+                        this.showHelp();
+                        break;
+                    case 'about_lu':
+                        this.showAboutLu();
+                        break;
+                    case 'beverages':
+                        this.showBeverages();
+                        break;
+                    case 'pets':
+                        this.showPets();
+                        break;
+                    default:
+                        this.appendOutput(`<span class="error">Command not recognized: ${command}</span>\nTry 'help' for available commands.`);
+                }
+            }
+            
+            startAdventure() {
+                this.gameState = 'adventure';
+                this.appendOutput(`<span class="cyan">ADVENTURE MODE INITIATED...</span>
+Loading Lu's bedroom/corporate headquarters...
+Calculating chaos levels... 47%
+Deploying imaginary friends... 73%
+Adventure ready!
+
+<span class="yellow">═══════════════════════════════════════</span>
+<span class="magenta">LU'S BEDROOM/CORPORATE HEADQUARTERS</span>
+<span class="yellow">═══════════════════════════════════════</span>
+
+You are in Lu's bedroom, which doubles as the secret headquarters 
+of her Global Communication Network & Friendship Database Corporation.
+
+<span class="cyan">You see:</span>
+• A notebook labeled "TOP SECRET BUSINESS PLANS" (glittery gel pen required)
+• A golden retriever named Lossy (currently ${this.lossyMood})
+• A suspicious squirrel outside the window (plotting something)
+• A microwave in the corner (offering life advice)
+
+<span class="yellow">Current Status:</span>
+Stress Level: ${this.stressLevel}%
+Lossy Mood: ${this.lossyMood}
+Squirrel Trust: ${this.squirrelTrust}%`);
+                
+                this.showChoices(['read', 'pet', 'investigate', 'snack', 'microwave']);
+            }
+            
+            handleAdventureCommands(command) {
+                switch(command) {
+                    case 'read':
+                        this.readNotebook();
+                        break;
+                    case 'pet':
+                        this.petLossy();
+                        break;
+                    case 'investigate':
+                        this.investigateSquirrel();
+                        break;
+                    case 'snack':
+                        this.getSnack();
+                        break;
+                    case 'microwave':
+                        this.consultMicrowave();
+                        break;
+                    case 'more_pets':
+                        this.morePets();
+                        break;
+                    case 'wave_at_squirrel':
+                        this.waveAtSquirrel();
+                        break;
+                    case 'share_snack':
+                        this.shareSnack();
+                        break;
+                    case 'thank_microwave':
+                        this.thankMicrowave();
+                        break;
+                    case 'build_something':
+                        this.buildSomething();
+                        break;
+                    case 'check_status':
+                        this.checkStatus();
+                        break;
+                    case 'call_meeting':
+                        this.callMeeting();
+                        break;
+                    case 'dance':
+                        this.danceWithSquirrel();
+                        break;
+                    case 'business_plan':
+                        this.makeBusinessPlan();
+                        break;
+                    case 'secret_handshake':
+                        this.secretHandshake();
+                        break;
+                    case 'exit':
+                    case 'quit':
+                        this.exitAdventure();
+                        break;
+                    default:
+                        this.appendOutput(`<span class="error">Invalid action: ${command}</span>\nTry typing 'check_status' to see available actions.`);
+                }
+            }
+            
+            petLossy() {
+                this.stressLevel = Math.max(0, this.stressLevel - 25);
+                this.lossyMood = 'happy';
+                
+                this.appendOutput(`<span class="cyan">🐕 PET LOSSY ACTIVATED 🐕</span>
+
+You approach Lossy and give him the finest quality pets. His tail 
+begins wagging at approximately 47 wags per minute (optimal rate).
+
+<span class="magenta">Lossy says:</span> "WOOF! *tail wagging intensifies* You know what would 
+really solve all your problems? A nice nap. Maybe some treats. 
+Definitely more belly rubs."
+
+<span class="yellow">EFFECT:</span>
+• Your stress levels decrease by 25% (now ${this.stressLevel}%)
+• Lossy's mood improved to: ${this.lossyMood}
+• Quality Control rating: MAXIMUM GOOD BOY
+• Recommended course of action: More pets, obviously
+
+<span class="cyan">Lossy stretches and yawns, demonstrating perfect nap technique.</span>`);
+                
+                this.showChoices(['read', 'investigate', 'snack', 'microwave', 'more_pets', 'check_status']);
+            }
+            
+            readNotebook() {
+                this.appendOutput(`<span class="cyan">📔 ACCESSING TOP SECRET BUSINESS PLANS 📔</span>
+
+You carefully open Lu's glittery notebook. The pages are filled with:
+
+<span class="magenta">PAGE 1: "PROJECT A.W.K.W.A.R.D."</span>
+"Make everyone brave enough to share cool thoughts!!!"
+*Diagram of friendship algorithm with lots of hearts*
+
+<span class="magenta">PAGE 2: "EVIL COMPANY DEFENSE STRATEGIES"</span>
+"1. Build sparkly defense shields
+ 2. Train squirrel as spy
+ 3. Ask Lossy for advice (he's very wise)"
+
+<span class="magenta">PAGE 3: "BEVERAGE TEMPERATURE RESEARCH"</span>
+"Hot chocolate: GOOD
+ Iced coffee: ALSO GOOD
+ Room temperature juice: ACCEPTABLE
+ Conclusion: Most temperatures are fine"
+
+<span class="yellow">You gain insight into Lu's corporate methodology.</span>`);
+                
+                this.showChoices(['pet', 'investigate', 'snack', 'microwave', 'business_plan']);
+            }
+            
+            investigateSquirrel() {
+                this.squirrelTrust += 15;
+                
+                this.appendOutput(`<span class="cyan">🐿️ SQUIRREL INVESTIGATION PROTOCOL 🐿️</span>
+
+You peer out the window at the suspicious squirrel. It notices 
+your surveillance and begins what appears to be... interpretive dance?
+
+<span class="magenta">Squirrel Activity Log:</span>
+• Arranging acorns in geometric patterns
+• Occasional chittering (possibly morse code?)
+• Making direct eye contact (VERY suspicious)
+• Tail twitching at irregular intervals
+
+The squirrel holds up a tiny sign that reads: "JUST TRYING TO HELP"
+
+<span class="yellow">Squirrel Trust Level increased to: ${this.squirrelTrust}%</span>
+
+You're beginning to suspect this squirrel might actually be part 
+of Lu's imaginary corporate team...`);
+                
+                this.showChoices(['pet', 'read', 'snack', 'microwave', 'wave_at_squirrel', 'dance']);
+            }
+            
+            getSnack() {
+                this.inventory.push('granola bar');
+                this.stressLevel = Math.max(0, this.stressLevel - 10);
+                
+                this.appendOutput(`<span class="cyan">🍪 SNACK ACQUISITION SUCCESSFUL 🍪</span>
+
+You discover Lu's emergency stash of granola bars hidden behind 
+her "Business Leadership for 9-Year-Olds" book.
+
+<span class="magenta">Snack Analysis:</span>
+• Flavor: Chocolate chip (premium grade)
+• Crumb factor: Moderate
+• Energy boost: +15 creativity points
+• Lossy interest level: MAXIMUM
+
+<span class="yellow">Inventory updated:</span> +1 Granola Bar
+<span class="yellow">Stress level reduced to:</span> ${this.stressLevel}%
+
+Lossy has detected the snack and is now giving you very hopeful eyes.`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'microwave', 'share_snack', 'build_something']);
+            }
+            
+            consultMicrowave() {
+                this.appendOutput(`<span class="cyan">📻 MICROWAVE CONSULTATION ACTIVATED 📻</span>
+
+You approach the microwave, which Lu has designated as "Chief 
+Wisdom Officer" of her corporation.
+
+<span class="magenta">MICROWAVE MIKE says:</span>
+"BEEP BEEP! *dramatic pause* Attention, human! I have observed 
+your stress patterns and recommend the following:
+
+1. Remember that most problems can be solved with friendship
+2. When in doubt, add more sparkles to your defense systems
+3. A warm beverage often provides clarity (I can help with that)
+4. That squirrel outside? Totally trustworthy. Great at acorn analytics.
+
+BEEP BEEP! *chef's kiss* Wisdom dispensed!"
+
+<span class="yellow">You feel 23% wiser and significantly more confident about 
+your ability to solve world problems.</span>`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'snack', 'thank_microwave', 'call_meeting']);
+            }
+            
+            morePets() {
+                this.stressLevel = Math.max(0, this.stressLevel - 15);
+                this.lossyMood = 'blissful';
+                
+                this.appendOutput(`<span class="cyan">🐕 PREMIUM PETTING PROTOCOL ACTIVATED 🐕</span>
+
+You decide that one round of pets was insufficient. Lossy agrees 
+with this assessment and flops over to expose his belly.
+
+<span class="magenta">Lossy's Professional Opinion:</span> "This is the BEST business strategy 
+ever implemented. Why solve complex problems when you could just 
+give more belly rubs? I recommend making this our primary corporate 
+methodology."
+
+<span class="yellow">ADVANCED PET METRICS:</span>
+• Tail wag frequency: 73 wags per minute (CRITICAL MASS)
+• Stress reduction: Additional 15% (total: ${this.stressLevel}%)
+• Lossy mood upgrade: ${this.lossyMood}
+• Corporate productivity: Unmeasurable (too relaxed to care)
+
+The squirrel outside starts slow-clapping in approval.`);
+                
+                this.showChoices(['read', 'investigate', 'snack', 'microwave', 'secret_handshake']);
+            }
+            
+            waveAtSquirrel() {
+                this.squirrelTrust += 25;
+                
+                this.appendOutput(`<span class="cyan">🐿️ DIPLOMATIC GESTURE INITIATED 🐿️</span>
+
+You wave enthusiastically at the squirrel. It pauses its acorn 
+arrangements and waves back with a tiny paw!
+
+<span class="magenta">Squirrel Communication Log:</span>
+The squirrel holds up a series of acorns spelling out: "H-E-L-L-O"
+Then it does what appears to be a little bow.
+Finally, it points at itself and holds up a sign: "CHATTY"
+
+<span class="yellow">BREAKTHROUGH:</span> You've made first contact with Chatty Squirrel, 
+Lu's secret Acorn Analytics Consultant!
+
+<span class="yellow">Squirrel Trust Level: ${this.squirrelTrust}%</span>
+
+Chatty chitters something that sounds suspiciously like "Want to 
+see my quarterly acorn reports?"`);
+                
+                this.showChoices(['pet', 'read', 'snack', 'microwave', 'dance', 'business_plan']);
+            }
+            
+            shareSnack() {
+                if (this.inventory.includes('granola bar')) {
+                    this.inventory = this.inventory.filter(item => item !== 'granola bar');
+                    this.lossyMood = 'ecstatic';
+                    this.squirrelTrust += 20;
+                    
+                    this.appendOutput(`<span class="cyan">🍪 SNACK SHARING PROTOCOL ENGAGED 🍪</span>
+
+You break the granola bar into strategic portions:
+• 60% for Lossy (he's a big dog)
+• 30% for yourself (executive privileges)  
+• 10% for Chatty Squirrel (international relations)
+
+<span class="magenta">Lossy's Response:</span> "OH WOW OH WOW OH WOW! This is the best 
+day of my entire Quality Control career! I'm promoting you to 
+Chief Snack Distribution Officer!"
+
+You toss a piece out the window. Chatty catches it expertly and 
+does a little victory dance.
+
+<span class="yellow">DIPLOMATIC SUCCESS:</span>
+• Lossy mood: ${this.lossyMood}
+• Squirrel Trust: ${this.squirrelTrust}%
+• Office morale: MAXIMUM
+• Granola bar: Consumed for the greater good`);
+                    
+                    this.showChoices(['pet', 'read', 'investigate', 'microwave', 'call_meeting']);
+                } else {
+                    this.appendOutput(`<span class="error">No snacks available to share!</span>
+You need to get a snack first before you can share it.`);
+                }
+            }
+            
+            thankMicrowave() {
+                this.appendOutput(`<span class="cyan">📻 GRATITUDE PROTOCOL ACTIVATED 📻</span>
+
+<span class="magenta">You say:</span> "Thank you for the wisdom, Microwave Mike!"
+
+<span class="magenta">MICROWAVE MIKE responds:</span>
+"BEEP BEEP! *emotional pause* Oh my goodness! In all my years 
+of dispensing life advice and reheating leftovers, no one has 
+ever thanked me for my wisdom!
+
+*happy beeping sounds*
+
+You know what? You're getting my premium advice package:
+
+BONUS WISDOM: Remember that being different isn't a bug, it's 
+a feature. Lu talks to kitchen appliances and she's the most 
+successful 9-year-old CEO I know!
+
+BEEP BEEP! *chef's kiss with extra sparkles*"
+
+<span class="yellow">You feel a warm glow of satisfaction (and not just from 
+the microwave's heating element).</span>`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'snack', 'build_something']);
+            }
+            
+            buildSomething() {
+                this.appendOutput(`<span class="cyan">🔧 CONSTRUCTION MODE ACTIVATED 🔧</span>
+
+Inspired by Lu's engineering spirit, you decide to build something 
+amazing using available bedroom/office supplies.
+
+<span class="magenta">Available Materials:</span>
+• 47 colored pens (various glitter levels)
+• A cardboard box labeled "IMPORTANT BUSINESS SUPPLIES"
+• Scotch tape (premium grade)
+• String cheese wrapper (surprisingly structural)
+
+You construct a "Friendship Detection Device" consisting of:
+- A cardboard periscope for spotting potential friends
+- Glittery early warning system for corporate spies
+- Emergency snack compartment (very important)
+
+<span class="yellow">ENGINEERING SUCCESS:</span>
+Lu would be proud of your innovative use of office supplies!
+Lossy sniffs the device and gives it two paws up.
+
+The squirrel outside holds up a sign: "EXCELLENT CRAFTSMANSHIP"`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'call_meeting']);
+            }
+            
+            checkStatus() {
+                this.appendOutput(`<span class="cyan">📊 CORPORATE STATUS REPORT 📊</span>
+
+<span class="magenta">CURRENT METRICS:</span>
+• CEO Stress Level: ${this.stressLevel}%
+• Quality Control Mood: ${this.lossyMood}
+• Squirrel Diplomatic Relations: ${this.squirrelTrust}%
+• Inventory: ${this.inventory.length > 0 ? this.inventory.join(', ') : 'Empty (time for snacks?)'}
+• Friendship Detection: OPERATIONAL
+• Microwave Wisdom Level: MAXIMUM
+
+<span class="magenta">AVAILABLE ACTIONS:</span>
+pet, read, investigate, snack, microwave, build_something, 
+call_meeting, dance, business_plan, secret_handshake, exit
+
+<span class="yellow">RECOMMENDATION:</span>
+All systems functioning within acceptable weirdness parameters.`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave']);
+            }
+            
+            callMeeting() {
+                this.appendOutput(`<span class="cyan">📋 EMERGENCY BOARD MEETING INITIATED 📋</span>
+
+You call an official meeting of Lu's Global Communication Network.
+
+<span class="magenta">ATTENDEES:</span>
+• Lossy (Quality Control) - Present and wagging
+• Microwave Mike (Chief Wisdom Officer) - BEEP BEEP!
+• Chatty Squirrel (via window conference call) - *chittering*
+• Various pens (silent partners) - Glittering ominously
+
+<span class="magenta">MEETING AGENDA:</span>
+
+<span class="yellow">Item 1:</span> Lossy reports that belly rub quotas are EXCEEDED
+<span class="yellow">Item 2:</span> Microwave Mike suggests adding more friendship algorithms
+<span class="yellow">Item 3:</span> Chatty proposes joint acorn-granola research initiatives
+<span class="yellow">Item 4:</span> Motion to make snack breaks mandatory every 23 minutes
+
+<span class="cyan">RESOLUTION:</span> All proposals approved unanimously!
+Meeting adjourned with unanimous tail wagging.`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'dance']);
+            }
+            
+            danceWithSquirrel() {
+                if (this.squirrelTrust >= 40) {
+                    this.squirrelTrust = Math.min(100, this.squirrelTrust + 15);
+                    
+                    this.appendOutput(`<span class="cyan">💃 INTERSPECIES DANCE PARTY ACTIVATED 💃</span>
+
+You start doing Lu's signature "Discovery Dance" (spinning until 
+dizzy, then more spinning). Chatty Squirrel immediately joins in!
+
+<span class="magenta">DANCE SEQUENCE:</span>
+• You: Victory spins with arm flourishes
+• Chatty: Acrobatic tail twirls and branch bouncing  
+• Lossy: Enthusiastic spinning in circles
+• Microwave Mike: Rhythmic beeping accompaniment
+
+<span class="yellow">CULTURAL BREAKTHROUGH:</span>
+You've established the first recorded human-squirrel-dog-microwave 
+dance collaboration in corporate history!
+
+<span class="yellow">Squirrel Trust: ${this.squirrelTrust}% (MAXIMUM FRIENDSHIP ACHIEVED)</span>
+
+Chatty holds up a tiny trophy made of acorns that says "BEST DANCE PARTNER"`);
+                    
+                    this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'secret_handshake']);
+                } else {
+                    this.appendOutput(`<span class="error">The squirrel seems hesitant to dance with you.</span>
+Maybe try building more trust first? (Wave or investigate more)`);
+                }
+            }
+            
+            makeBusinessPlan() {
+                this.appendOutput(`<span class="cyan">📈 STRATEGIC PLANNING SESSION INITIATED 📈</span>
+
+Inspired by Lu's notebook, you decide to create your own business plan:
+
+<span class="magenta">PROJECT: "ULTIMATE FRIENDSHIP OPTIMIZATION"</span>
+
+<span class="yellow">Phase 1:</span> Pet all available dogs (COMPLETED ✓)
+<span class="yellow">Phase 2:</span> Establish squirrel diplomatic relations (IN PROGRESS)
+<span class="yellow">Phase 3:</span> Consult kitchen appliances for wisdom (COMPLETED ✓)
+<span class="yellow">Phase 4:</span> Invent new forms of interpretive dance (COMPLETED ✓)
+<span class="yellow">Phase 5:</span> Share snacks for world peace (OPTIONAL BUT RECOMMENDED)
+
+<span class="magenta">SUCCESS METRICS:</span>
+• Tail wags per minute: UNLIMITED
+• Stress levels: APPROACHING ZERO
+• Weirdness acceptance: 100%
+• Fun optimization: MAXIMUM
+
+<span class="cyan">Congratulations! You've successfully internalized Lu's corporate philosophy!</span>`);
+                
+                this.showChoices(['pet', 'read', 'investigate', 'snack', 'microwave', 'call_meeting']);
+            }
+            
+            secretHandshake() {
+                if (this.lossyMood === 'blissful' || this.lossyMood === 'ecstatic') {
+                    this.appendOutput(`<span class="cyan">🤝 SECRET HANDSHAKE PROTOCOL ACTIVATED 🤝</span>
+
+You approach Lossy for the ultra-secret Lu & Lossy corporate handshake:
+
+<span class="magenta">THE SEQUENCE:</span>
+1. You hold out your hand
+2. Lossy places his paw in your palm
+3. Gentle paw shake (3.7 seconds, optimal duration)
+4. Lossy does a little spin
+5. You do a victory pose
+6. Both parties say "MAXIMUM GOOD BUSINESS!" 
+   (Lossy's version is "WOOF!")
+
+<span class="yellow">HANDSHAKE COMPLETED SUCCESSFULLY!</span>
+
+You are now an official member of Lu's Global Communication Network!
+
+<span class="cyan">Certificate of Friendship Achievement unlocked!</span>
+Chatty Squirrel applauds from the window.`);
+                    
+                    this.showChoices(['read', 'investigate', 'snack', 'microwave', 'call_meeting', 'exit']);
+                } else {
+                    this.appendOutput(`<span class="error">Lossy seems too sleepy for the secret handshake.</span>
+Maybe give him some more attention first?`);
+                }
+            }
+            
+            showChoices(choices) {
+                let choiceText = '\n<span class="choices">What do you do?</span>\n';
+                choices.forEach(choice => {
+                    choiceText += `<button class="choice-button" onclick="game.processCommand('${choice}')">[${choice}]</button>`;
+                });
+                this.appendOutput(choiceText);
+            }
+            
+            showHelp() {
+                this.appendOutput(`<span class="cyan">AVAILABLE COMMANDS:</span>
+• adventure - Begin Lu's bedroom adventure
+• about_lu - Meet your CEO
+• beverages - Temperature preferences explained  
+• pets - Current animal employees
+• help - Show this menu`);
+            }
+            
+            showAboutLu() {
+                this.appendOutput(`<span class="cyan">CEO BIOGRAPHY LOADING...</span>
+Calculating amazingness levels... 47%
+Translating from 9-year-old to corporate speak... 73%
+Adding required sparkles... 89%
+Biography ready!
+
+<span class="magenta">CEO:</span> Luna Kaitlin Murs, Age 9
+<span class="magenta">Qualifications:</span> Talks to kitchen appliances, invents new math
+<span class="magenta">Current projects:</span> Solving all human problems via friendship algorithms
+<span class="magenta">Management style:</span> Enthusiastic chaos with strategic snack breaks
+<span class="magenta">Company motto:</span> "Being weird is actually totally fine"`);
+            }
+            
+            showBeverages() {
+                this.appendOutput(`<span class="cyan">BEVERAGE TEMPERATURE RESEARCH DIVISION REPORT:</span>
+
+<span class="magenta">Hot beverages:</span> Excellent for thinking deep thoughts
+<span class="magenta">Cold beverages:</span> Perfect for celebrating breakthroughs  
+<span class="magenta">Room temperature:</span> Acceptable during crisis management
+<span class="magenta">Frozen beverages:</span> Reserved for maximum celebration events
+
+<span class="yellow">Conclusion:</span> Most temperatures are scientifically awesome.
+<span class="yellow">Current recommendation:</span> Whatever temperature makes you happy.`);
+            }
+            
+            showPets() {
+                this.appendOutput(`<span class="cyan">CURRENT ANIMAL EMPLOYEES:</span>
+
+<span class="magenta">Lossy</span> - Quality Control Department
+• Status: Professional napper and treat evaluator
+• Qualifications: Very good boy, excellent listener
+• Current mood: ${this.lossyMood}
+
+<span class="magenta">Neighborhood Squirrel</span> - Acorn Analytics Consultant  
+• Status: Suspicious but helpful
+• Trust level: ${this.squirrelTrust}%
+• Specialty: Interpretive dance communications
+
+<span class="yellow">All employees are receiving adequate treats and belly rubs.</span>`);
+            }
+            
+            exitAdventure() {
+                this.gameState = 'lobby';
+                this.appendOutput(`<span class="cyan">ADVENTURE MODE DEACTIVATED</span>
+Returning to main terminal...
+Adventure progress saved to Lu's secret files.
+
+Thanks for visiting Lu's corporate headquarters!`);
+            }
+        }
+        
+        // Initialize the game
+        const game = new LossyAdventure();
+    </script>
 </body>
 </html>
